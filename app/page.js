@@ -100,7 +100,7 @@ export default function Home() {
       <section id="join" className="hero on-black">
         <div className="container hero-grid">
           <div>
-            <div className="eyebrow">Now in early access</div>
+            <div className="eyebrow eyebrow-tag">Now in early access</div>
             <h1 className="headline headline--hero">Always know<br />which card to use.</h1>
             <p className="subhead">
               You've got a few cards. Most of the time you just grab one and hope. CardPilot tells

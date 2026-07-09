@@ -37,15 +37,22 @@ img { max-width: 100%; display: block; }
 
 .container { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
 
-/* Serif is reserved for statement headlines ONLY. Never in UI. */
+/* Serif is reserved for SECONDARY section-opener headings. Never in UI. */
 .headline {
   font-family: var(--serif);
   font-weight: 500;
-  font-size: clamp(32px, 5vw, 54px);
-  line-height: 1.07;
-  letter-spacing: -0.015em;
+  font-size: clamp(24px, 3.4vw, 38px);
+  line-height: 1.14;
+  letter-spacing: -0.012em;
 }
-.headline--hero { font-size: clamp(40px, 6.4vw, 72px); line-height: 1.03; }
+/* Hero leads with sans — sans leads, serif accents. */
+.headline--hero {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: clamp(30px, 4.6vw, 50px);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
 
 .eyebrow {
   font-family: var(--sans);
@@ -53,6 +60,17 @@ img { max-width: 100%; display: block; }
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
+}
+
+/* Small product tag (fintech-style pill) */
+.eyebrow-tag {
+  display: inline-block;
+  padding: 6px 13px;
+  border-radius: 100px;
+  border: 1px solid rgba(139, 107, 138, 0.5);
+  background: rgba(139, 107, 138, 0.14);
+  color: var(--plum-hi);
+  letter-spacing: 0.14em;
 }
 
 .subhead {
@@ -66,12 +84,12 @@ img { max-width: 100%; display: block; }
 .tnum { font-variant-numeric: tabular-nums; }
 
 /* Section surfaces */
-.section { padding: 104px 0; }
+.section { padding: 74px 0; }
 .on-black { background: var(--black); color: var(--cream); }
 .on-cream { background: var(--cream); color: var(--black); }
-.section-head { max-width: 640px; }
-.section-head .eyebrow { margin-bottom: 18px; }
-.section-head .subhead { margin-top: 20px; }
+.section-head { max-width: 620px; }
+.section-head .eyebrow { margin-bottom: 14px; }
+.section-head .subhead { margin-top: 16px; }
 .on-black .eyebrow { color: var(--cream-faint); }
 .on-cream .eyebrow { color: var(--plum-hi); }
 .on-black .subhead { color: var(--cream-dim); }
@@ -135,16 +153,16 @@ nav {
 .nav-links a:hover { color: var(--cream); }
 
 /* ── HERO ── */
-.hero { padding: 116px 0 100px; }
+.hero { padding: 80px 0 72px; }
 .hero-grid {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
-  gap: 72px;
+  gap: 56px;
   align-items: center;
 }
-.hero .eyebrow { color: var(--cream-faint); margin-bottom: 26px; }
-.hero .headline { margin-bottom: 24px; }
-.hero .subhead { color: var(--cream-dim); margin-bottom: 36px; }
+.hero .eyebrow-tag { margin-bottom: 22px; }
+.hero .headline { margin-bottom: 18px; }
+.hero .subhead { color: var(--cream-dim); margin-bottom: 28px; }
 .hero-form-wrap { display: flex; flex-direction: column; gap: 14px; }
 .hero-micro { font-size: 13px; color: var(--cream-faint); }
 
@@ -166,14 +184,14 @@ nav {
   color: var(--cream);
 }
 .wl-form.on-dark input::placeholder { color: var(--cream-faint); }
-.wl-form.on-dark input:focus { border-color: rgba(244, 239, 230, 0.55); }
+.wl-form.on-dark input:focus { border-color: var(--plum-hi); box-shadow: 0 0 0 3px rgba(139, 107, 138, 0.18); }
 .wl-form.on-light input {
   background: #fff;
   border: 1px solid rgba(26, 24, 21, 0.22);
   color: var(--black);
 }
 .wl-form.on-light input::placeholder { color: var(--black-faint); }
-.wl-form.on-light input:focus { border-color: rgba(26, 24, 21, 0.5); }
+.wl-form.on-light input:focus { border-color: var(--plum); box-shadow: 0 0 0 3px rgba(74, 44, 67, 0.14); }
 
 .success-msg {
   display: inline-flex;
@@ -244,59 +262,66 @@ nav {
 
 /* ── STATS band ── */
 .stats {
-  padding: 46px 0;
+  padding: 34px 0;
   border-top: 1px solid var(--hair-on-cream);
   border-bottom: 1px solid var(--hair-on-cream);
 }
-.stats-inner { display: flex; gap: 80px; flex-wrap: wrap; }
-.stat-num { font-size: 42px; font-weight: 600; letter-spacing: -0.02em; line-height: 1; }
+.stats-inner { display: flex; gap: 72px; flex-wrap: wrap; }
+.stat-num { font-size: 34px; font-weight: 600; letter-spacing: -0.02em; line-height: 1; }
 .stat-label { font-size: 14px; color: var(--black-dim); margin-top: 8px; max-width: 22ch; }
 
-/* ── FEATURES ── (hairline grid on black) */
+/* ── FEATURES ── (distinct UI cards on black) */
 .features-grid {
-  margin-top: 60px;
+  margin-top: 44px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  border-top: 1px solid var(--hair-on-black);
-  border-left: 1px solid var(--hair-on-black);
+  gap: 14px;
 }
 .feature {
-  padding: 38px 34px 42px;
-  border-right: 1px solid var(--hair-on-black);
-  border-bottom: 1px solid var(--hair-on-black);
+  padding: 26px 24px 28px;
+  background: rgba(244, 239, 230, 0.035);
+  border: 1px solid rgba(244, 239, 230, 0.14);
+  border-radius: 12px;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
 }
-.feature-glyph { color: var(--cream); margin-bottom: 22px; opacity: 0.9; }
+.feature:hover {
+  border-color: rgba(139, 107, 138, 0.6);
+  background: rgba(244, 239, 230, 0.055);
+  transform: translateY(-2px);
+}
+.feature-glyph { color: var(--cream); margin-bottom: 18px; opacity: 0.85; transition: color 0.15s ease; }
+.feature:hover .feature-glyph { color: var(--plum-hi); opacity: 1; }
 .feature h3 {
   font-family: var(--sans);
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 600;
   letter-spacing: -0.01em;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
-.feature p { font-size: 15px; color: var(--cream-dim); line-height: 1.6; }
+.feature p { font-size: 14.5px; color: var(--cream-dim); line-height: 1.55; }
 
 /* ── HOW IT WORKS ── (cream) */
 .steps {
-  margin-top: 60px;
+  margin-top: 44px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 44px;
+  gap: 32px;
 }
-.step { padding-top: 22px; border-top: 1px solid var(--hair-on-cream); }
+.step { padding-top: 18px; border-top: 1px solid var(--hair-on-cream); }
 .step-num {
   font-family: var(--sans);
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 700;
   letter-spacing: 0.04em;
-  color: var(--black-faint);
-  margin-bottom: 18px;
+  color: var(--plum);
+  margin-bottom: 14px;
 }
 .step h3 {
   font-family: var(--sans);
-  font-size: 19px;
+  font-size: 18px;
   font-weight: 600;
   letter-spacing: -0.01em;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 .step p { font-size: 15px; color: var(--black-dim); line-height: 1.6; }
 
@@ -304,7 +329,7 @@ nav {
 .business-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 72px;
+  gap: 56px;
   align-items: center;
 }
 .business-list {
@@ -354,17 +379,17 @@ nav {
 .snapshot-row .value.accent { color: var(--plum); }
 
 /* ── FOUNDER NOTE ── (cream) */
-.founder { max-width: 720px; }
-.founder .eyebrow { color: var(--plum-hi); margin-bottom: 20px; }
-.founder .headline { margin-bottom: 30px; }
-.founder-body { font-family: var(--sans); font-size: clamp(17px, 2vw, 20px); line-height: 1.65; color: var(--black-dim); }
+.founder { max-width: 700px; }
+.founder .eyebrow { color: var(--plum-hi); margin-bottom: 16px; }
+.founder .headline { margin-bottom: 22px; }
+.founder-body { font-family: var(--sans); font-size: clamp(16px, 1.7vw, 18px); line-height: 1.62; color: var(--black-dim); }
 .founder-body p { margin-bottom: 18px; }
 .founder-sign { font-weight: 600; color: var(--black); }
 
 /* ── FINAL CTA ── (cream, divided from founder by hairline) */
 .final-cta { border-top: 1px solid var(--hair-on-cream); text-align: center; }
-.final-cta .headline { margin-bottom: 18px; }
-.final-cta .subhead { margin: 0 auto 32px; color: var(--black-dim); }
+.final-cta .headline { margin-bottom: 14px; }
+.final-cta .subhead { margin: 0 auto 24px; color: var(--black-dim); }
 .final-cta .wl-form { margin: 0 auto; }
 .final-cta-micro { margin-top: 16px; font-size: 13px; color: var(--black-faint); }
 
