@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import './globals.css'
 
-function WaitlistForm({ dark = false }) {
+function WaitlistForm({ onDark = false }) {
   const [email, setEmail] = useState('')
   const [submitted, setSubmitted] = useState(false)
 
@@ -16,13 +16,13 @@ function WaitlistForm({ dark = false }) {
   if (submitted) {
     return (
       <div className="success-msg">
-        <span>✓</span> You're on the list — we'll be in touch soon!
+        <span className="tick">✓</span> You're on the list — we'll be in touch soon.
       </div>
     )
   }
 
   return (
-    <form className={dark ? 'cta-form' : 'waitlist-form'} onSubmit={handleSubmit}>
+    <form className={`wl-form ${onDark ? 'on-dark' : 'on-light'}`} onSubmit={handleSubmit}>
       <input
         type="email"
         placeholder="Enter your email address"
@@ -30,9 +30,54 @@ function WaitlistForm({ dark = false }) {
         onChange={e => setEmail(e.target.value)}
         required
       />
-      <button type="submit">Join Waitlist →</button>
+      <button type="submit" className="btn btn-plum">Join Waitlist</button>
     </form>
   )
+}
+
+/* Signature brand mark: origin dot → one bend → destination dot (destination in plum) */
+function CourseMark() {
+  return (
+    <svg width="46" height="26" viewBox="0 0 46 26" fill="none" aria-hidden="true">
+      <path d="M4 21 H22 L42 6" stroke="#1A1815" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="4" cy="21" r="2.4" fill="#1A1815" />
+      <circle cx="42" cy="6" r="3.4" fill="#4A2C43" />
+    </svg>
+  )
+}
+
+/* Simple monoline feature glyphs (single-color, inherit currentColor) */
+const glyph = {
+  card: (
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2.5" y="5" width="19" height="14" rx="2.5" /><path d="M2.5 9.5h19" /><path d="M6 15.5h4" />
+    </svg>
+  ),
+  statement: (
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M5 2.5h9l5 5v14H5z" /><path d="M14 2.5v5h5" /><path d="M8 13h8M8 16.5h8M8 9.5h3" />
+    </svg>
+  ),
+  compare: (
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="6" width="6.5" height="14" rx="1.5" /><rect x="14.5" y="3" width="6.5" height="17" rx="1.5" />
+    </svg>
+  ),
+  points: (
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="9" /><path d="M12 7.5v9M9.2 12h5.6" />
+    </svg>
+  ),
+  status: (
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M6 21V3" /><path d="M6 4h11l-2.2 3.5L17 11H6" />
+    </svg>
+  ),
+  window: (
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="9" /><path d="M12 7.5V12l3 1.8" />
+    </svg>
+  ),
 }
 
 export default function Home() {
@@ -41,120 +86,81 @@ export default function Home() {
       {/* ── NAV ── */}
       <nav>
         <div className="container nav-inner">
-          <div className="nav-logo">Card<span>Pilot</span></div>
+          <div className="nav-logo">CardPilot</div>
           <ul className="nav-links">
             <li><a href="#features">Features</a></li>
             <li><a href="#how-it-works">How It Works</a></li>
             <li><a href="#business">For Business</a></li>
-            <li>
-              <a href="https://cardpilot-iota.vercel.app" target="_blank" rel="noopener noreferrer">
-                <button className="btn btn-primary" style={{padding:'8px 18px',fontSize:'14px'}}>Try the App →</button>
-              </a>
-            </li>
+            <li><a href="#join"><button className="btn btn-plum btn-sm">Join Waitlist</button></a></li>
           </ul>
         </div>
       </nav>
 
       {/* ── HERO ── */}
-      <section className="hero">
-        <div className="container">
-          <div className="hero-badge">
-            🚀 Now in Early Access
-          </div>
-          <h1>
-            Stop leaving money<br />
-            <span className="accent">on the table.</span>
-          </h1>
-          <p>
-            CardPilot tells you exactly which credit card to use for every purchase —
-            maximizing rewards, tracking perks, and managing your entire card portfolio
-            across household members and businesses.
-          </p>
-          <div className="hero-cta">
-            <WaitlistForm />
-            <p className="hero-sub">Free to join · No credit card required · Nebraska-built</p>
+      <section id="join" className="hero on-black">
+        <div className="container hero-grid">
+          <div>
+            <div className="eyebrow">Now in early access</div>
+            <h1 className="headline headline--hero">Always know<br />which card to use.</h1>
+            <p className="subhead">
+              You've got a few cards. Most of the time you just grab one and hope. CardPilot tells
+              you the right one for every purchase — so you stop leaving rewards behind without
+              thinking about it.
+            </p>
+            <div className="hero-form-wrap">
+              <WaitlistForm onDark />
+              <p className="hero-micro">Free to join · No credit card required · Built in Nebraska</p>
+            </div>
           </div>
 
-          <div className="hero-stats">
-            <div>
-              <div className="hero-stat-num">$300+</div>
-              <div className="hero-stat-label">avg. missed per month</div>
-            </div>
-            <div>
-              <div className="hero-stat-num">4.2</div>
-              <div className="hero-stat-label">avg. cards per household</div>
-            </div>
-            <div>
-              <div className="hero-stat-num">100+</div>
-              <div className="hero-stat-label">cards in our database</div>
-            </div>
-            <div>
-              <div className="hero-stat-num">1 min</div>
-              <div className="hero-stat-label">to get your first recommendation</div>
+          <div className="verdict" aria-hidden="true">
+            <div className="verdict-behind b1" />
+            <div className="verdict-behind b2" />
+            <div className="verdict-card">
+              <div className="verdict-mark"><CourseMark /></div>
+              <div className="verdict-label">Use this</div>
+              <div className="verdict-name">Sapphire</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── PROBLEM BAND ── */}
-      <div className="problem-band">
-        <div className="container">
-          <p>
-            The average cardholder leaves <strong>$300+ per month</strong> in unredeemed rewards on the table.
-            CardPilot closes that gap — automatically.
-          </p>
+      {/* ── STATS ── */}
+      <div className="stats on-cream">
+        <div className="container stats-inner">
+          <div>
+            <div className="stat-num tnum">100+</div>
+            <div className="stat-label">cards in our database</div>
+          </div>
+          <div>
+            <div className="stat-num tnum">1 min</div>
+            <div className="stat-label">to your first recommendation</div>
+          </div>
         </div>
       </div>
 
       {/* ── FEATURES ── */}
-      <section id="features" className="features-bg">
+      <section id="features" className="section on-black">
         <div className="container">
-          <div className="text-center">
-            <div className="section-label">Features</div>
-            <h2 className="section-title">Everything you need to<br />maximize every swipe</h2>
-            <p className="section-sub mx-auto">
-              CardPilot combines real-time optimization, perk tracking, and intelligent
-              analytics into one platform built for serious cardholders.
+          <div className="section-head">
+            <div className="eyebrow">Features</div>
+            <h2 className="headline">Everything you need,<br />none of the homework.</h2>
+            <p className="subhead">
+              CardPilot does the optimizing a points obsessive would — so you never have to become one.
             </p>
           </div>
 
           <div className="features-grid">
             {[
-              {
-                icon: '⚡', bg: '#fef9c3',
-                title: 'Instant Card Recommendations',
-                desc: 'Tell us the category and amount — CardPilot instantly tells you which card earns the most, with a plain-English explanation of why.'
-              },
-              {
-                icon: '📊', bg: '#eff6ff',
-                title: 'Transaction Center',
-                desc: 'Upload your statements via CSV or PDF. CardPilot categorizes every transaction, calculates what you earned, and shows exactly what you missed.'
-              },
-              {
-                icon: '⇄', bg: '#f0fdf4',
-                title: 'Full Card Comparison',
-                desc: 'Compare up to 4 cards side-by-side across rewards, perks, annual fees, transfer partners, and net value — not just multipliers.'
-              },
-              {
-                icon: '✈️', bg: '#fdf4ff',
-                title: 'Points Intelligence Engine',
-                desc: 'Track your points across all programs, find the best transfer opportunities, and plan your redemptions with a destination-first search.'
-              },
-              {
-                icon: '🏆', bg: '#fff7ed',
-                title: 'Status Strategy',
-                desc: 'Set your airline and hotel status goals. CardPilot routes your spend — especially low-multiplier General spend — toward the programs that matter most.'
-              },
-              {
-                icon: '💳', bg: '#f0fdf4',
-                title: '0% APR Tracking',
-                desc: 'CardPilot tracks intro APR windows on every card you own and alerts you 90, 60, and 30 days before your promotional period ends.'
-              },
+              { g: glyph.card, title: 'The right card, instantly', desc: 'Tell us the category and amount. CardPilot names the card that earns most, and explains why in plain English.' },
+              { g: glyph.statement, title: 'See what you actually earned', desc: 'Upload a statement (CSV or PDF). CardPilot sorts every purchase and shows what you earned and what you left behind.' },
+              { g: glyph.compare, title: 'Compare cards honestly', desc: 'Put up to four cards side by side on rewards, perks, fees, and real net value — not just headline multipliers.' },
+              { g: glyph.points, title: 'Points, without the spreadsheet', desc: 'Track points across programs and see the best way to use them, starting from where you actually want to go.' },
+              { g: glyph.status, title: 'Status, if you want it', desc: 'Set an airline or hotel goal and CardPilot routes the right spend toward it. Ignore it entirely if you don\'t care.' },
+              { g: glyph.window, title: 'Never miss a 0% window', desc: 'CardPilot tracks intro-APR end dates and warns you at 90, 60, and 30 days.' },
             ].map((f, i) => (
-              <div className="feature-card" key={i}>
-                <div className="feature-icon" style={{ background: f.bg }}>
-                  {f.icon}
-                </div>
+              <div className="feature" key={i}>
+                <div className="feature-glyph">{f.g}</div>
                 <h3>{f.title}</h3>
                 <p>{f.desc}</p>
               </div>
@@ -164,35 +170,23 @@ export default function Home() {
       </section>
 
       {/* ── HOW IT WORKS ── */}
-      <section id="how-it-works" className="how-bg">
+      <section id="how-it-works" className="section on-cream">
         <div className="container">
-          <div className="text-center">
-            <div className="section-label">How It Works</div>
-            <h2 className="section-title">Up and running in minutes</h2>
-            <p className="section-sub mx-auto">
-              No bank connections required to get started. Just add your cards and let CardPilot go to work.
+          <div className="section-head">
+            <div className="eyebrow">How it works</div>
+            <h2 className="headline">Set up in minutes.</h2>
+            <p className="subhead">
+              No bank connection required to start. Add your cards and let CardPilot do the rest.
             </p>
           </div>
           <div className="steps">
             {[
-              {
-                num: '1',
-                title: 'Add your cards',
-                desc: 'Select the cards you own from our database of 100+ cards. Add your household members and business entities in seconds.'
-              },
-              {
-                num: '2',
-                title: 'Set your goals',
-                desc: 'Tell us what matters — maximizing points, earning airline status, hotel nights, or cash back. CardPilot tailors every recommendation.'
-              },
-              {
-                num: '3',
-                title: 'Optimize every purchase',
-                desc: 'Before you swipe, check CardPilot. Upload your statements monthly to see your earnings, missed value, and month-over-month trends.'
-              },
+              { num: '01', title: 'Add your cards', desc: 'Pick what you own from our database. Add household members or a business in seconds.' },
+              { num: '02', title: 'Say what matters', desc: 'Cash back, travel, status, or just "the most value." CardPilot tailors every call to that.' },
+              { num: '03', title: 'Check before you pay', desc: 'A quick look tells you the right card. Upload statements when you want to see earnings and trends.' },
             ].map((s, i) => (
               <div className="step" key={i}>
-                <div className="step-num">{s.num}</div>
+                <div className="step-num tnum">{s.num}</div>
                 <h3>{s.title}</h3>
                 <p>{s.desc}</p>
               </div>
@@ -201,115 +195,82 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── BUSINESS SECTION ── */}
-      <section id="business" className="business-bg">
-        <div className="container">
-          <div className="business-grid">
-            <div className="business-content">
-              <div className="section-label" style={{ color: '#60a5fa' }}>For Business Owners</div>
-              <h2 className="section-title">Built for the way<br />businesses actually spend</h2>
-              <p className="section-sub">
-                Managing cards across multiple businesses, employees, and entities is a nightmare.
-                CardPilot is the only tool that tracks it all in one place.
-              </p>
-              <ul className="business-list">
-                <li>Assign each card to a specific business or entity</li>
-                <li>Track spend and rewards by business separately</li>
-                <li>Get card recommendations filtered by entity</li>
-                <li>Route large General spend toward airline or hotel status goals</li>
-                <li>Manage multiple cardholders and household members</li>
-                <li>Upload statements from multiple accounts in one place</li>
-              </ul>
-            </div>
-            <div className="business-card">
-              <div style={{ marginBottom: 20 }}>
-                <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)', marginBottom: 4, fontWeight: 600 }}>EXAMPLE — Monthly Snapshot</div>
-                <div style={{ fontSize: 22, fontWeight: 800, color: 'white' }}>Coast 2 Coast Payments</div>
-              </div>
-              {[
-                { label: 'Cards tracked', value: '4 cards', cls: '' },
-                { label: 'Monthly spend', value: '$12,400', cls: '' },
-                { label: 'Rewards earned', value: '+$341', cls: 'good' },
-                { label: 'Missed value', value: '-$89', cls: 'bad' },
-                { label: 'Optimization rate', value: '79%', cls: '' },
-                { label: 'Best card this month', value: 'Amex Biz Gold', cls: 'good' },
-              ].map((row, i) => (
-                <div className="business-card-row" key={i}>
-                  <span className="label">{row.label}</span>
-                  <span className={`value ${row.cls}`}>{row.value}</span>
-                </div>
-              ))}
-            </div>
+      {/* ── FOR BUSINESS ── */}
+      <section id="business" className="section on-black">
+        <div className="container business-grid">
+          <div>
+            <div className="eyebrow" style={{ color: 'var(--cream-faint)' }}>For business owners</div>
+            <h2 className="headline" style={{ marginTop: 18 }}>Built for the way<br />businesses actually spend.</h2>
+            <p className="subhead" style={{ marginTop: 20, color: 'var(--cream-dim)' }}>
+              Cards across multiple entities and employees is a mess to track. CardPilot keeps it in one place.
+            </p>
+            <ul className="business-list">
+              <li>Assign each card to an entity</li>
+              <li>Track spend and rewards per business</li>
+              <li>Get recommendations filtered by entity</li>
+              <li>Route large general spend toward status goals</li>
+              <li>Manage multiple cardholders</li>
+              <li>Upload statements from multiple accounts</li>
+            </ul>
           </div>
-        </div>
-      </section>
 
-      {/* ── TESTIMONIALS ── */}
-      <section className="testimonials-bg">
-        <div className="container">
-          <div className="text-center">
-            <div className="section-label">Early Users</div>
-            <h2 className="section-title">Built by a rewards nerd,<br />for rewards nerds</h2>
-          </div>
-          <div className="testimonials-grid">
+          <div className="snapshot">
+            <div className="snapshot-head">Example — illustrative</div>
+            <div className="snapshot-title">Sample Business Snapshot</div>
             {[
-              {
-                text: '"I had no idea I was leaving almost $400 a month on the table just by using the wrong card for groceries and gas. CardPilot paid for itself in the first week."',
-                name: 'Sarah M.',
-                role: 'Small Business Owner · Omaha, NE',
-                initials: 'SM'
-              },
-              {
-                text: '"Finally a tool that understands I run three different businesses with different cards for each. The entity-level tracking alone is worth it."',
-                name: 'Marcus T.',
-                role: 'Entrepreneur · Lincoln, NE',
-                initials: 'MT'
-              },
-              {
-                text: '"I travel for work constantly. CardPilot mapped out exactly how to hit United status using my existing cards. I didn\'t need a new card — just a better strategy."',
-                name: 'Jennifer K.',
-                role: 'Consultant · Kansas City, MO',
-                initials: 'JK'
-              },
-            ].map((t, i) => (
-              <div className="testimonial" key={i}>
-                <p className="testimonial-text">{t.text}</p>
-                <div className="testimonial-author">
-                  <div className="testimonial-avatar">{t.initials}</div>
-                  <div>
-                    <div className="testimonial-name">{t.name}</div>
-                    <div className="testimonial-role">{t.role}</div>
-                  </div>
-                </div>
+              { label: 'Cards tracked', value: '4 cards' },
+              { label: 'Monthly spend', value: '$12,400' },
+              { label: 'Rewards earned', value: '+$341' },
+              { label: 'Missed value', value: '-$89' },
+              { label: 'Optimization rate', value: '79%' },
+              { label: 'Best card this month', value: 'Amex Biz Gold', accent: true },
+            ].map((row, i) => (
+              <div className="snapshot-row" key={i}>
+                <span className="label">{row.label}</span>
+                <span className={`value tnum${row.accent ? ' accent' : ''}`}>{row.value}</span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── CTA ── */}
-      <section className="cta-section">
+      {/* ── FOUNDER NOTE ── */}
+      <section className="section on-cream">
+        <div className="container founder">
+          <div className="eyebrow">Why I built this</div>
+          <h2 className="headline">I got tired of guessing.</h2>
+          <div className="founder-body">
+            <p>
+              I have more credit cards than I'd like to admit, and for years I just used the same
+              one for everything — losing rewards I'd technically already earned, on purchases I was
+              making anyway.
+            </p>
+            <p>
+              Every "which card should I use" tool assumed I wanted to become a points expert. I
+              didn't. I just wanted the right answer. So I built CardPilot to give it to me — and to you.
+            </p>
+            <p className="founder-sign">— Jen, founder</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── FINAL CTA ── */}
+      <section className="section on-cream final-cta">
         <div className="container">
-          <div className="section-label" style={{ color: 'rgba(255,255,255,0.7)' }}>Get Early Access</div>
-          <h2 className="section-title">Ready to stop leaving<br />money on the table?</h2>
-          <p className="section-sub">
-            Join the waitlist and be the first to access CardPilot when we launch.
-            Free tier available for everyone.
-          </p>
-          <WaitlistForm dark />
-          <p style={{ marginTop: 16, fontSize: 13, color: 'rgba(255,255,255,0.5)' }}>
-            No spam. No credit card. Just smarter spending.
-          </p>
+          <h2 className="headline">Stop leaving money behind.</h2>
+          <p className="subhead">Join the waitlist and be first in when we open access.</p>
+          <WaitlistForm />
+          <p className="final-cta-micro">No spam. No credit card. Just the right card, every time.</p>
         </div>
       </section>
 
       {/* ── FOOTER ── */}
       <footer>
-        <div className="container footer-inner">
+        <div className="container">
           <div className="footer-top">
             <div className="footer-brand">
-              <div className="nav-logo">Card<span style={{ color: '#60a5fa' }}>Pilot</span></div>
-              <p>The smartest way to manage your credit card portfolio. Built in Nebraska.</p>
+              <div className="nav-logo">CardPilot</div>
+              <p>The smartest way to use the cards you already have. Built in Nebraska.</p>
             </div>
             <div className="footer-links">
               <div className="footer-col">
@@ -318,22 +279,22 @@ export default function Home() {
                   <li><a href="#features">Features</a></li>
                   <li><a href="#how-it-works">How It Works</a></li>
                   <li><a href="#business">For Business</a></li>
-                  <li><a href="https://cardpilot-iota.vercel.app" target="_blank" rel="noopener noreferrer">Try the App</a></li>
+                  <li><a href="#join">Join Waitlist</a></li>
                 </ul>
               </div>
               <div className="footer-col">
                 <h4>Company</h4>
                 <ul>
-                  <li><a href="mailto:hello@mycardpilot.com">Contact Us</a></li>
+                  <li><a href="mailto:hello@mycardpilot.com">Contact</a></li>
                   <li><a href="#">Privacy Policy</a></li>
-                  <li><a href="#">Terms of Service</a></li>
+                  <li><a href="#">Terms</a></li>
                 </ul>
               </div>
             </div>
           </div>
           <div className="footer-bottom">
-            <p>© {new Date().getFullYear()} CardPilot LLC. All rights reserved. · Omaha, Nebraska</p>
-            <p>Not affiliated with any credit card issuer. Always read card terms before applying.</p>
+            <p>© 2026 CardPilot LLC · Omaha, Nebraska · Not affiliated with any card issuer.</p>
+            <p>Always read card terms before applying.</p>
           </div>
         </div>
       </footer>
