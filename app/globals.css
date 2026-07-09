@@ -4,8 +4,9 @@
   /* ── Direction 03 palette ── */
   --cream: #F4EFE6;   /* warm off-white — editorial surface */
   --black: #1A1815;   /* warm near-black — dark sections, text on cream */
-  --plum: #3A1F33;    /* deep aubergine — brand accent on light surfaces + section bands + buttons */
-  --plum-hi: #9A6E90; /* lifted plum — accents that must stay visible on warm-black (eyebrows, glyphs, nav) */
+  --plum: #5A2E4E;      /* aubergine — brand accent on light surfaces + buttons (sharper, more saturated) */
+  --plum-deep: #3A1F33; /* deep aubergine — the CTA band; stays rich, doesn't brighten */
+  --plum-hi: #9A5C8A;   /* lifted plum — accents that must stay visible on warm-black (eyebrows, glyphs, nav) */
 
   /* derived tones */
   --cream-dim:   rgba(244, 239, 230, 0.66);
@@ -69,8 +70,8 @@ img { max-width: 100%; display: block; }
   gap: 8px;
   padding: 6px 13px;
   border-radius: 100px;
-  border: 1px solid rgba(154, 110, 144, 0.45);
-  background: rgba(154, 110, 144, 0.12);
+  border: 1px solid rgba(154, 92, 138, 0.5);
+  background: rgba(154, 92, 138, 0.14);
   color: var(--plum-hi);
   letter-spacing: 0.14em;
 }
@@ -96,7 +97,7 @@ img { max-width: 100%; display: block; }
 .section { padding: 74px 0; }
 .on-black { background: var(--black); color: var(--cream); }
 .on-cream { background: var(--cream); color: var(--black); }
-.on-plum { background: var(--plum); color: var(--cream); }
+.on-plum { background: var(--plum-deep); color: var(--cream); }
 .on-plum .subhead { color: var(--cream-dim); }
 .section-head { max-width: 620px; }
 .section-head .eyebrow { margin-bottom: 14px; }
@@ -129,8 +130,8 @@ img { max-width: 100%; display: block; }
   font-weight: 600;
   box-shadow: inset 0 1px 0 rgba(244, 239, 230, 0.16);
 }
-.btn-plum:hover { background: #4E2A44; transform: translateY(-1px); }
-.btn-plum:active { background: #331B2D; transform: translateY(0); }
+.btn-plum:hover { background: #6B3A5D; transform: translateY(-1px); }
+.btn-plum:active { background: #4A2540; transform: translateY(0); }
 /* Cream button — for CTAs sitting on the plum band */
 .btn-cream {
   background: var(--cream);
@@ -179,7 +180,7 @@ nav {
 .nav-links a:hover { color: var(--plum-hi); }
 
 /* ── HERO ── */
-.hero { padding: 80px 0 72px; }
+.hero { padding: 80px 0 72px; overflow: hidden; }
 .hero-grid {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
@@ -210,14 +211,14 @@ nav {
   color: var(--cream);
 }
 .wl-form.on-dark input::placeholder { color: var(--cream-faint); }
-.wl-form.on-dark input:focus { border-color: var(--plum-hi); box-shadow: 0 0 0 3px rgba(110, 71, 99, 0.30); }
+.wl-form.on-dark input:focus { border-color: var(--plum-hi); box-shadow: 0 0 0 3px rgba(154, 92, 138, 0.30); }
 .wl-form.on-light input {
   background: #fff;
   border: 1px solid rgba(26, 24, 21, 0.22);
   color: var(--black);
 }
 .wl-form.on-light input::placeholder { color: var(--black-faint); }
-.wl-form.on-light input:focus { border-color: var(--plum); box-shadow: 0 0 0 3px rgba(58, 31, 51, 0.16); }
+.wl-form.on-light input:focus { border-color: var(--plum); box-shadow: 0 0 0 3px rgba(90, 46, 78, 0.16); }
 .wl-form.on-plum input {
   background: #fff;
   border: 1px solid rgba(244, 239, 230, 0.55);
@@ -320,8 +321,8 @@ nav {
   transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
 }
 .feature:hover {
-  border-color: rgba(154, 110, 144, 0.8);
-  background: rgba(154, 110, 144, 0.10);
+  border-color: rgba(154, 92, 138, 0.8);
+  background: rgba(154, 92, 138, 0.10);
   transform: translateY(-2px);
 }
 .feature-glyph { color: var(--plum-hi); margin-bottom: 18px; opacity: 0.95; transition: opacity 0.15s ease; }
@@ -455,19 +456,33 @@ footer { background: var(--black); color: var(--cream-dim); padding: 60px 0 36px
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-  .hero-grid { grid-template-columns: 1fr; gap: 56px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 48px; }
   .verdict { height: 300px; }
   .features-grid { grid-template-columns: repeat(2, 1fr); }
   .business-grid { grid-template-columns: 1fr; gap: 48px; }
 }
 @media (max-width: 640px) {
-  .section { padding: 76px 0; }
-  .hero { padding: 84px 0 72px; }
+  .container { padding: 0 20px; }
+  .section { padding: 60px 0; }
+  .hero { padding: 68px 0 56px; }
+  /* Nav collapses to logo + reachable Join Waitlist button */
   .nav-links li:not(:last-child) { display: none; }
-  .stats-inner { gap: 40px; }
+  .stats { padding: 30px 0; }
+  .stats-inner { gap: 44px; }
   .features-grid { grid-template-columns: 1fr; }
-  .steps { grid-template-columns: 1fr; gap: 36px; }
+  .steps { grid-template-columns: 1fr; gap: 30px; }
   .wl-form { flex-direction: column; }
   .wl-form .btn { width: 100%; }
   .footer-top { flex-direction: column; }
+  .footer-links { gap: 40px; }
+}
+@media (max-width: 430px) {
+  .verdict { height: 250px; }
+  .verdict-card { width: 264px; height: 168px; padding: 20px 22px; }
+  .verdict-name { font-size: 34px; }
+  .verdict-behind { width: 244px; height: 150px; }
+  .verdict-behind.b1 { transform: translate(-26px, -20px) rotate(-7deg); }
+  .verdict-behind.b2 { transform: translate(20px, 22px) rotate(6deg); }
+  .stat-num { font-size: 30px; }
+  .snapshot { padding: 24px 22px; }
 }

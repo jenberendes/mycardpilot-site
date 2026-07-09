@@ -39,9 +39,9 @@ function WaitlistForm({ surface = 'light' }) {
 function CourseMark() {
   return (
     <svg width="46" height="26" viewBox="0 0 46 26" fill="none" aria-hidden="true">
-      <path d="M4 21 H22 L42 6" stroke="#3A1F33" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-      <circle cx="4" cy="21" r="2.4" fill="#3A1F33" />
-      <circle cx="42" cy="6" r="3.4" fill="#3A1F33" />
+      <path d="M4 21 H22 L42 6" stroke="#5A2E4E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="4" cy="21" r="2.4" fill="#5A2E4E" />
+      <circle cx="42" cy="6" r="3.4" fill="#5A2E4E" />
     </svg>
   )
 }
