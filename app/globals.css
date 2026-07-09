@@ -4,8 +4,8 @@
   /* ── Direction 03 palette ── */
   --cream: #F4EFE6;   /* warm off-white — editorial surface */
   --black: #1A1815;   /* warm near-black — dark sections, text on cream */
-  --plum: #4A2C43;    /* the ONE accent */
-  --plum-hi: #8B6B8A; /* muted highlight — used sparingly */
+  --plum: #3A1F33;    /* deep aubergine — the accent; a functional signal, not a tint */
+  --plum-hi: #6E4763; /* lifted aubergine — accents that must stay visible on warm-black */
 
   /* derived tones */
   --cream-dim:   rgba(244, 239, 230, 0.66);
@@ -62,15 +62,24 @@ img { max-width: 100%; display: block; }
   text-transform: uppercase;
 }
 
-/* Small product tag (fintech-style pill) */
+/* Small product tag (fintech-style pill) — neutral, not tinted */
 .eyebrow-tag {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   padding: 6px 13px;
   border-radius: 100px;
-  border: 1px solid rgba(139, 107, 138, 0.5);
-  background: rgba(139, 107, 138, 0.14);
-  color: var(--plum-hi);
+  border: 1px solid rgba(244, 239, 230, 0.22);
+  background: rgba(244, 239, 230, 0.05);
+  color: var(--cream-dim);
   letter-spacing: 0.14em;
+}
+.eyebrow-tag::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--plum-hi);
 }
 
 .subhead {
@@ -91,7 +100,7 @@ img { max-width: 100%; display: block; }
 .section-head .eyebrow { margin-bottom: 14px; }
 .section-head .subhead { margin-top: 16px; }
 .on-black .eyebrow { color: var(--cream-faint); }
-.on-cream .eyebrow { color: var(--plum-hi); }
+.on-cream .eyebrow { color: var(--black-faint); }
 .on-black .subhead { color: var(--cream-dim); }
 .on-cream .subhead { color: var(--black-dim); }
 
@@ -112,8 +121,14 @@ img { max-width: 100%; display: block; }
   white-space: nowrap;
   transition: background 0.15s ease, transform 0.15s ease;
 }
-.btn-plum { background: var(--plum); color: var(--cream); }
-.btn-plum:hover { background: #3b2135; transform: translateY(-1px); }
+.btn-plum {
+  background: var(--plum);
+  color: #FCFAF5;
+  font-weight: 600;
+  box-shadow: inset 0 1px 0 rgba(244, 239, 230, 0.16);
+}
+.btn-plum:hover { background: #4E2A44; transform: translateY(-1px); }
+.btn-plum:active { background: #331B2D; transform: translateY(0); }
 .btn-sm { height: 40px; padding: 0 18px; font-size: 14px; border-radius: 7px; }
 
 /* ── NAV ── */
@@ -184,14 +199,14 @@ nav {
   color: var(--cream);
 }
 .wl-form.on-dark input::placeholder { color: var(--cream-faint); }
-.wl-form.on-dark input:focus { border-color: var(--plum-hi); box-shadow: 0 0 0 3px rgba(139, 107, 138, 0.18); }
+.wl-form.on-dark input:focus { border-color: var(--plum-hi); box-shadow: 0 0 0 3px rgba(110, 71, 99, 0.30); }
 .wl-form.on-light input {
   background: #fff;
   border: 1px solid rgba(26, 24, 21, 0.22);
   color: var(--black);
 }
 .wl-form.on-light input::placeholder { color: var(--black-faint); }
-.wl-form.on-light input:focus { border-color: var(--plum); box-shadow: 0 0 0 3px rgba(74, 44, 67, 0.14); }
+.wl-form.on-light input:focus { border-color: var(--plum); box-shadow: 0 0 0 3px rgba(58, 31, 51, 0.16); }
 
 .success-msg {
   display: inline-flex;
@@ -214,7 +229,7 @@ nav {
   flex-shrink: 0;
 }
 .on-black .success-msg { border: 1px solid var(--hair-on-black); color: var(--cream); }
-.on-black .success-msg .tick { background: var(--plum-hi); color: var(--black); }
+.on-black .success-msg .tick { background: var(--plum-hi); color: var(--cream); }
 .on-cream .success-msg { border: 1px solid var(--hair-on-cream); color: var(--black); }
 .on-cream .success-msg .tick { background: var(--plum); color: var(--cream); }
 
@@ -285,12 +300,12 @@ nav {
   transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
 }
 .feature:hover {
-  border-color: rgba(139, 107, 138, 0.6);
+  border-color: rgba(110, 71, 99, 0.75);
   background: rgba(244, 239, 230, 0.055);
   transform: translateY(-2px);
 }
-.feature-glyph { color: var(--cream); margin-bottom: 18px; opacity: 0.85; transition: color 0.15s ease; }
-.feature:hover .feature-glyph { color: var(--plum-hi); opacity: 1; }
+.feature-glyph { color: var(--cream); margin-bottom: 18px; opacity: 0.85; transition: opacity 0.15s ease; }
+.feature:hover .feature-glyph { opacity: 1; }
 .feature h3 {
   font-family: var(--sans);
   font-size: 16px;
@@ -380,7 +395,7 @@ nav {
 
 /* ── FOUNDER NOTE ── (cream) */
 .founder { max-width: 700px; }
-.founder .eyebrow { color: var(--plum-hi); margin-bottom: 16px; }
+.founder .eyebrow { color: var(--black-faint); margin-bottom: 16px; }
 .founder .headline { margin-bottom: 22px; }
 .founder-body { font-family: var(--sans); font-size: clamp(16px, 1.7vw, 18px); line-height: 1.62; color: var(--black-dim); }
 .founder-body p { margin-bottom: 18px; }

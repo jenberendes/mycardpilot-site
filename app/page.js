@@ -41,7 +41,7 @@ function CourseMark() {
     <svg width="46" height="26" viewBox="0 0 46 26" fill="none" aria-hidden="true">
       <path d="M4 21 H22 L42 6" stroke="#1A1815" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
       <circle cx="4" cy="21" r="2.4" fill="#1A1815" />
-      <circle cx="42" cy="6" r="3.4" fill="#4A2C43" />
+      <circle cx="42" cy="6" r="3.4" fill="#3A1F33" />
     </svg>
   )
 }
@@ -220,10 +220,10 @@ export default function Home() {
             {[
               { label: 'Cards tracked', value: '4 cards' },
               { label: 'Monthly spend', value: '$12,400' },
-              { label: 'Rewards earned', value: '+$341' },
+              { label: 'Rewards earned', value: '+$341', accent: true },
               { label: 'Missed value', value: '-$89' },
               { label: 'Optimization rate', value: '79%' },
-              { label: 'Best card this month', value: 'Amex Biz Gold', accent: true },
+              { label: 'Best card this month', value: 'Amex Biz Gold' },
             ].map((row, i) => (
               <div className="snapshot-row" key={i}>
                 <span className="label">{row.label}</span>
