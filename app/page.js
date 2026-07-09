@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import './globals.css'
 
-function WaitlistForm({ onDark = false }) {
+function WaitlistForm({ surface = 'light' }) {
   const [email, setEmail] = useState('')
   const [submitted, setSubmitted] = useState(false)
 
@@ -22,7 +22,7 @@ function WaitlistForm({ onDark = false }) {
   }
 
   return (
-    <form className={`wl-form ${onDark ? 'on-dark' : 'on-light'}`} onSubmit={handleSubmit}>
+    <form className={`wl-form on-${surface}`} onSubmit={handleSubmit}>
       <input
         type="email"
         placeholder="Enter your email address"
@@ -30,7 +30,7 @@ function WaitlistForm({ onDark = false }) {
         onChange={e => setEmail(e.target.value)}
         required
       />
-      <button type="submit" className="btn btn-plum">Join Waitlist</button>
+      <button type="submit" className={`btn ${surface === 'plum' ? 'btn-cream' : 'btn-plum'}`}>Join Waitlist</button>
     </form>
   )
 }
@@ -39,8 +39,8 @@ function WaitlistForm({ onDark = false }) {
 function CourseMark() {
   return (
     <svg width="46" height="26" viewBox="0 0 46 26" fill="none" aria-hidden="true">
-      <path d="M4 21 H22 L42 6" stroke="#1A1815" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
-      <circle cx="4" cy="21" r="2.4" fill="#1A1815" />
+      <path d="M4 21 H22 L42 6" stroke="#3A1F33" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="4" cy="21" r="2.4" fill="#3A1F33" />
       <circle cx="42" cy="6" r="3.4" fill="#3A1F33" />
     </svg>
   )
@@ -108,7 +108,7 @@ export default function Home() {
               thinking about it.
             </p>
             <div className="hero-form-wrap">
-              <WaitlistForm onDark />
+              <WaitlistForm surface="dark" />
               <p className="hero-micro">Free to join · No credit card required · Built in Nebraska</p>
             </div>
           </div>
@@ -199,7 +199,7 @@ export default function Home() {
       <section id="business" className="section on-black">
         <div className="container business-grid">
           <div>
-            <div className="eyebrow" style={{ color: 'var(--cream-faint)' }}>For business owners</div>
+            <div className="eyebrow" style={{ color: 'var(--plum-hi)' }}>For business owners</div>
             <h2 className="headline" style={{ marginTop: 18 }}>Built for the way<br />businesses actually spend.</h2>
             <p className="subhead" style={{ marginTop: 20, color: 'var(--cream-dim)' }}>
               Cards across multiple entities and employees is a mess to track. CardPilot keeps it in one place.
@@ -255,11 +255,11 @@ export default function Home() {
       </section>
 
       {/* ── FINAL CTA ── */}
-      <section className="section on-cream final-cta">
+      <section className="section on-plum final-cta">
         <div className="container">
           <h2 className="headline">Stop leaving money behind.</h2>
           <p className="subhead">Join the waitlist and be first in when we open access.</p>
-          <WaitlistForm />
+          <WaitlistForm surface="plum" />
           <p className="final-cta-micro">No spam. No credit card. Just the right card, every time.</p>
         </div>
       </section>
