@@ -1,8 +1,26 @@
-// Receives waitlist signups from the site and adds them to the Google Sheet.
-// The sheet's private web-app address lives in the Vercel env var WAITLIST_SHEET_URL
-// (see docs/waitlist-google-sheet.md), so it never appears in the code or the browser.
+// Receives waitlist signups from the site and adds them as contacts in GoHighLevel (GHL),
+// tagged "cardpilot-waitlist". The GHL access key and sub-account id live in Vercel env vars
+// GHL_API_TOKEN and GHL_LOCATION_ID (see docs/waitlist-ghl.md), never in the code.
 
+const GHL_API = 'https://services.leadconnectorhq.com'
+const GHL_VERSION = '2021-07-28'
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
+
+async function ghl(path, token, body) {
+  const res = await fetch(`${GHL_API}${path}`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Version: GHL_VERSION,
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify(body),
+  })
+  const data = await res.json().catch(() => null)
+  if (!res.ok) throw new Error(`GHL ${path} responded ${res.status}`)
+  return data
+}
 
 export async function POST(request) {
   let body
@@ -20,24 +38,32 @@ export async function POST(request) {
     return Response.json({ ok: false, error: 'Please enter a valid email address.' }, { status: 400 })
   }
 
-  const sheetUrl = process.env.WAITLIST_SHEET_URL
-  if (!sheetUrl) {
-    console.error('WAITLIST_SHEET_URL is not set')
+  const token = process.env.GHL_API_TOKEN
+  const locationId = process.env.GHL_LOCATION_ID
+  if (!token || !locationId) {
+    console.error('GHL_API_TOKEN or GHL_LOCATION_ID is not set')
     return Response.json({ ok: false, error: 'Signup is temporarily unavailable.' }, { status: 503 })
   }
 
+  const where = body.source === 'footer' ? 'footer' : 'hero'
+
   try {
-    const res = await fetch(sheetUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify({ email, source: String(body.source || '').slice(0, 40) }),
-      redirect: 'follow',
+    // Create the contact, or find the existing one with this email.
+    const data = await ghl('/contacts/upsert', token, {
+      locationId,
+      email,
+      source: 'mycardpilot.com waitlist',
     })
-    const data = await res.json().catch(() => null)
-    if (!res.ok || !data?.ok) throw new Error(`Sheet responded ${res.status}`)
+    const contactId = data?.contact?.id
+    if (!contactId) throw new Error('GHL upsert returned no contact id')
+
+    // Add tags without removing any the contact already has.
+    await ghl(`/contacts/${contactId}/tags`, token, {
+      tags: ['cardpilot-waitlist', `cardpilot-waitlist-${where}`],
+    })
     return Response.json({ ok: true })
   } catch (err) {
-    console.error('Waitlist save failed:', err)
+    console.error('Waitlist save failed:', err.message)
     return Response.json({ ok: false, error: 'Something went wrong. Please try again.' }, { status: 502 })
   }
 }
