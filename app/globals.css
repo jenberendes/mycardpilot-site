@@ -534,3 +534,14 @@ footer { background: var(--black); color: var(--cream-dim); padding: 60px 0 36px
   .stats-inner { gap: 16px; }
   .stat-num { font-size: 26px; }
 }
+
+/* ── LEGAL PAGES (privacy, terms) ── */
+.legal { max-width: 700px; }
+.legal .eyebrow { color: var(--plum); margin-bottom: 14px; }
+.legal .headline { margin-bottom: 28px; }
+.legal-body { font-size: 16px; line-height: 1.65; color: var(--black-dim); }
+.legal-body h2 { font-family: var(--sans); font-size: 18px; font-weight: 600; color: var(--black); margin: 32px 0 10px; }
+.legal-body p, .legal-body ul { margin-bottom: 14px; }
+.legal-body ul { padding-left: 20px; }
+.legal-body a, .legal-back a { color: var(--plum); text-decoration: underline; text-underline-offset: 3px; }
+.legal-back { margin-top: 40px; font-weight: 600; }

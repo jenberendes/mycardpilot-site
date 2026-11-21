@@ -286,8 +286,8 @@ export default function Home() {
                 <h4>Company</h4>
                 <ul>
                   <li><a href="mailto:hello@mycardpilot.com">Contact</a></li>
-                  <li><a href="#">Privacy Policy</a></li>
-                  <li><a href="#">Terms</a></li>
+                  <li><a href="/privacy">Privacy Policy</a></li>
+                  <li><a href="/terms">Terms</a></li>
                 </ul>
               </div>
             </div>
