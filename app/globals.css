@@ -545,3 +545,11 @@ footer { background: var(--black); color: var(--cream-dim); padding: 60px 0 36px
 .legal-body ul { padding-left: 20px; }
 .legal-body a, .legal-back a { color: var(--plum); text-decoration: underline; text-underline-offset: 3px; }
 .legal-back { margin-top: 40px; font-weight: 600; }
+
+/* ── WAITLIST: spam trap + error message ── */
+.wl-trap { position: absolute !important; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.wl-form button:disabled { opacity: 0.7; cursor: wait; }
+.wl-error { margin-top: 10px; font-size: 14px; font-weight: 500; }
+.wl-error.on-dark { color: #E8A6C9; }
+.wl-error.on-light { color: var(--plum); }
+.wl-error.on-plum { color: var(--cream); }

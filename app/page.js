@@ -4,13 +4,30 @@ import './globals.css'
 
 function WaitlistForm({ surface = 'light' }) {
   const [email, setEmail] = useState('')
+  const [website, setWebsite] = useState('') // hidden spam trap
   const [submitted, setSubmitted] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState('')
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    if (!email) return
-    // In production, connect to your email service (Mailchimp, Resend, etc.)
-    setSubmitted(true)
+    if (!email || sending) return
+    setSending(true)
+    setError('')
+    try {
+      const res = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, website, source: surface === 'plum' ? 'footer' : 'hero' }),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok || !data.ok) throw new Error(data.error || 'Something went wrong. Please try again.')
+      setSubmitted(true)
+    } catch (err) {
+      setError(err.message)
+    } finally {
+      setSending(false)
+    }
   }
 
   if (submitted) {
@@ -22,6 +39,7 @@ function WaitlistForm({ surface = 'light' }) {
   }
 
   return (
+    <>
     <form className={`wl-form on-${surface}`} onSubmit={handleSubmit}>
       <input
         type="email"
@@ -29,9 +47,24 @@ function WaitlistForm({ surface = 'light' }) {
         value={email}
         onChange={e => setEmail(e.target.value)}
         required
+        aria-label="Email address"
       />
-      <button type="submit" className={`btn ${surface === 'plum' ? 'btn-cream' : 'btn-plum'}`}>Join Waitlist</button>
+      <input
+        type="text"
+        name="website"
+        className="wl-trap"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        value={website}
+        onChange={e => setWebsite(e.target.value)}
+      />
+      <button type="submit" disabled={sending} className={`btn ${surface === 'plum' ? 'btn-cream' : 'btn-plum'}`}>
+        {sending ? 'Joining…' : 'Join Waitlist'}
+      </button>
     </form>
+    {error && <p className={`wl-error on-${surface}`} role="alert">{error}</p>}
+    </>
   )
 }
 
