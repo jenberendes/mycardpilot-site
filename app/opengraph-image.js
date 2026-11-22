@@ -1,5 +1,6 @@
 // The picture shown when someone texts or posts a link to the site.
 import { ImageResponse } from 'next/og'
+import { S_PATH, SPARKLE_PATH } from './logo'
 
 export const alt = 'Suited: always know which card to use'
 export const size = { width: 1200, height: 630 }
@@ -16,27 +17,26 @@ export default function OpengraphImage() {
           flexDirection: 'column',
           justifyContent: 'space-between',
           padding: '80px 88px',
-          background: '#1A1815',
-          color: '#F4EFE6',
+          background: '#0E1626',
+          color: '#F5F1E8',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: 22 }}>
-          <svg width="92" height="52" viewBox="0 0 46 26">
-            <path d="M4 21 H22 L42 6" fill="none" stroke="#9A5C8A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            <circle cx="4" cy="21" r="2.8" fill="#9A5C8A" />
-            <circle cx="42" cy="6" r="3.8" fill="#9A5C8A" />
+        <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
+          <svg width="64" height="64" viewBox="0 0 100 100">
+            <path d={S_PATH} fill="none" stroke="#F5F1E8" strokeWidth="12" strokeLinecap="round" />
+            <path d={SPARKLE_PATH} fill="#D4AF37" />
           </svg>
           <div style={{ fontSize: 44, fontWeight: 700, letterSpacing: '-0.02em' }}>Suited</div>
         </div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
           <div style={{ fontSize: 72, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
             Always know which card to use.
           </div>
-          <div style={{ fontSize: 32, color: 'rgba(244, 239, 230, 0.66)' }}>
+          <div style={{ fontSize: 32, color: 'rgba(245, 241, 232, 0.68)' }}>
             The smartest way to use the cards you already have.
           </div>
         </div>
-        <div style={{ display: 'flex', fontSize: 26, color: '#9A5C8A' }}>mycardpilot.com</div>
+        <div style={{ display: 'flex', fontSize: 26, color: '#D4AF37' }}>mycardpilot.com</div>
       </div>
     ),
     size

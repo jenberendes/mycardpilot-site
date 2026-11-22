@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import './globals.css'
+import { SuitedLogo, SuitedMark } from './logo'
 
 function WaitlistForm({ surface = 'light' }) {
   const [email, setEmail] = useState('')
@@ -68,17 +69,6 @@ function WaitlistForm({ surface = 'light' }) {
   )
 }
 
-/* Signature brand mark: origin dot → one bend → destination dot (destination in plum) */
-function CourseMark() {
-  return (
-    <svg width="46" height="26" viewBox="0 0 46 26" fill="none" aria-hidden="true">
-      <path d="M4 21 H22 L42 6" stroke="#5A2E4E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-      <circle cx="4" cy="21" r="2.4" fill="#5A2E4E" />
-      <circle cx="42" cy="6" r="3.4" fill="#5A2E4E" />
-    </svg>
-  )
-}
-
 /* Simple monoline feature glyphs (single-color, inherit currentColor) */
 const glyph = {
   card: (
@@ -134,7 +124,7 @@ function SiteNav() {
   return (
     <nav>
       <div className="container nav-inner">
-        <div className="nav-logo">Suited</div>
+        <div className="nav-logo"><SuitedLogo /></div>
         <ul className="nav-links">
           {NAV_LINKS.map((l) => (
             <li key={l.href} className="nav-section"><a href={l.href}>{l.label}</a></li>
@@ -199,7 +189,7 @@ export default function Home() {
             <div className="verdict-behind b1" />
             <div className="verdict-behind b2" />
             <div className="verdict-card">
-              <div className="verdict-mark"><CourseMark /></div>
+              <div className="verdict-mark"><SuitedMark size={30} color="#1C2D52" /></div>
               <div className="verdict-label">Use this</div>
               <div className="verdict-name">Sapphire</div>
             </div>
@@ -351,7 +341,7 @@ export default function Home() {
         <div className="container">
           <div className="footer-top">
             <div className="footer-brand">
-              <div className="nav-logo">Suited</div>
+              <div className="nav-logo"><SuitedLogo /></div>
               <p>The smartest way to use the cards you already have. Built in Nebraska.</p>
             </div>
             <div className="footer-links">
