@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './globals.css'
 
 function WaitlistForm({ surface = 'light' }) {
@@ -113,21 +113,70 @@ const glyph = {
   ),
 }
 
+/* Top bar. On phones the section links fold into a menu button. */
+const NAV_LINKS = [
+  { href: '#features', label: 'Features' },
+  { href: '#how-it-works', label: 'How It Works' },
+  { href: '#business', label: 'For Business' },
+]
+
+function SiteNav() {
+  const [open, setOpen] = useState(false)
+  const close = () => setOpen(false)
+
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e) => { if (e.key === 'Escape') setOpen(false) }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [open])
+
+  return (
+    <nav>
+      <div className="container nav-inner">
+        <div className="nav-logo">CardPilot</div>
+        <ul className="nav-links">
+          {NAV_LINKS.map((l) => (
+            <li key={l.href} className="nav-section"><a href={l.href}>{l.label}</a></li>
+          ))}
+          <li><a href="#join" onClick={close}><span className="btn btn-plum btn-sm">Join Waitlist</span></a></li>
+          <li className="nav-menu-item">
+            <button
+              type="button"
+              className="nav-menu-btn"
+              aria-expanded={open}
+              aria-controls="mobile-menu"
+              aria-label={open ? 'Close menu' : 'Open menu'}
+              onClick={() => setOpen((o) => !o)}
+            >
+              <span className={open ? 'burger is-open' : 'burger'} aria-hidden="true"><i /><i /><i /></span>
+            </button>
+          </li>
+        </ul>
+      </div>
+      <div id="mobile-menu" className={open ? 'mobile-menu is-open' : 'mobile-menu'} hidden={!open}>
+        <ul className="container">
+          {NAV_LINKS.map((l) => (
+            <li key={l.href}><a href={l.href} onClick={close}>{l.label}</a></li>
+          ))}
+        </ul>
+      </div>
+    </nav>
+  )
+}
+
+/* Footer year: shows the build year at first, then the visitor's current year. */
+function CurrentYear() {
+  const [year, setYear] = useState(2026)
+  useEffect(() => { setYear(new Date().getFullYear()) }, [])
+  return year
+}
+
 export default function Home() {
   return (
     <>
       {/* ── NAV ── */}
-      <nav>
-        <div className="container nav-inner">
-          <div className="nav-logo">CardPilot</div>
-          <ul className="nav-links">
-            <li><a href="#features">Features</a></li>
-            <li><a href="#how-it-works">How It Works</a></li>
-            <li><a href="#business">For Business</a></li>
-            <li><a href="#join"><button className="btn btn-plum btn-sm">Join Waitlist</button></a></li>
-          </ul>
-        </div>
-      </nav>
+      <SiteNav />
 
       {/* ── HERO ── */}
       <section id="join" className="hero on-black">
@@ -326,7 +375,7 @@ export default function Home() {
             </div>
           </div>
           <div className="footer-bottom">
-            <p>© 2026 CardPilot LLC · Omaha, Nebraska · Not affiliated with any card issuer.</p>
+            <p>© <CurrentYear /> CardPilot LLC · Omaha, Nebraska · Not affiliated with any card issuer.</p>
             <p>Always read card terms before applying.</p>
           </div>
         </div>

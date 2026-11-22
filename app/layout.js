@@ -1,6 +1,7 @@
 import './globals.css'
 
 export const metadata = {
+  metadataBase: new URL('https://mycardpilot.com'),
   title: 'CardPilot — Always know which card to use',
   description: 'You\'ve got a few cards. CardPilot tells you the right one for every purchase — so you stop leaving rewards behind without thinking about it.',
   openGraph: {
@@ -8,7 +9,9 @@ export const metadata = {
     description: 'The smartest way to use the cards you already have.',
     url: 'https://mycardpilot.com',
     siteName: 'CardPilot',
+    type: 'website',
   },
+  twitter: { card: 'summary_large_image' },
 }
 
 export default function RootLayout({ children }) {
