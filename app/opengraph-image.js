@@ -1,7 +1,7 @@
 // The picture shown when someone texts or posts a link to the site.
 import { ImageResponse } from 'next/og'
 
-export const alt = 'CardPilot: always know which card to use'
+export const alt = 'Suited: always know which card to use'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -26,7 +26,7 @@ export default function OpengraphImage() {
             <circle cx="4" cy="21" r="2.8" fill="#9A5C8A" />
             <circle cx="42" cy="6" r="3.8" fill="#9A5C8A" />
           </svg>
-          <div style={{ fontSize: 44, fontWeight: 700, letterSpacing: '-0.02em' }}>CardPilot</div>
+          <div style={{ fontSize: 44, fontWeight: 700, letterSpacing: '-0.02em' }}>Suited</div>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
           <div style={{ fontSize: 72, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>

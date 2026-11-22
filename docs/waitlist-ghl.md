@@ -1,8 +1,8 @@
 # Waitlist → GoHighLevel setup
 
 The waitlist form sends each signup to `/api/waitlist`, which creates (or finds) a contact in
-the **Aesthetic Finds** GHL sub-account and adds the tags `cardpilot-waitlist` plus
-`cardpilot-waitlist-hero` or `cardpilot-waitlist-footer` (which box they used).
+the **Aesthetic Finds** GHL sub-account and adds the tags `suited-waitlist` plus
+`suited-waitlist-hero` or `suited-waitlist-footer` (which box they used).
 
 Two Vercel environment variables connect it. Neither belongs in the code.
 
@@ -14,7 +14,7 @@ Two Vercel environment variables connect it. Neither belongs in the code.
 ## Getting the token
 
 GHL → switch to **Aesthetic Finds** → **Settings → Private Integrations** → the integration
-named **CardPilot website waitlist** (scopes: View Contacts, Edit Contacts). The token is shown
+named **Suited website waitlist** (scopes: View Contacts, Edit Contacts). The token is shown
 once when the integration is created; if it's lost, use **Rotate** to get a new one and update
 Vercel.
 

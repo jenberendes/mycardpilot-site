@@ -1,5 +1,5 @@
 // Receives waitlist signups from the site and adds them as contacts in GoHighLevel (GHL),
-// tagged "cardpilot-waitlist". The GHL access key and sub-account id live in Vercel env vars
+// tagged "suited-waitlist". The GHL access key and sub-account id live in Vercel env vars
 // GHL_API_TOKEN and GHL_LOCATION_ID (see docs/waitlist-ghl.md), never in the code.
 
 const GHL_API = 'https://services.leadconnectorhq.com'
@@ -59,7 +59,7 @@ export async function POST(request) {
 
     // Add tags without removing any the contact already has.
     await ghl(`/contacts/${contactId}/tags`, token, {
-      tags: ['cardpilot-waitlist', `cardpilot-waitlist-${where}`],
+      tags: ['suited-waitlist', `suited-waitlist-${where}`],
     })
     return Response.json({ ok: true })
   } catch (err) {
