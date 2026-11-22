@@ -189,7 +189,7 @@ export default function Home() {
             <div className="verdict-behind b1" />
             <div className="verdict-behind b2" />
             <div className="verdict-card">
-              <div className="verdict-mark"><SuitedMark size={30} color="#1C2D52" /></div>
+              <div className="verdict-mark"><SuitedMark size={30} color="#111A2E" face="#F5F1E8" /></div>
               <div className="verdict-label">Use this</div>
               <div className="verdict-name">Sapphire</div>
             </div>
