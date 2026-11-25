@@ -173,7 +173,7 @@ export default function Home() {
         <div className="container hero-grid">
           <div>
             <div className="eyebrow eyebrow-tag">Now in early access</div>
-            <h1 className="headline headline--hero">Always know<br />which card to use.</h1>
+            <h1 className="headline headline--hero">Always know<br /><span className="headline-accent">which card to use.</span></h1>
             <p className="subhead">
               You've got a few cards. Most of the time you just grab one and hope. Suited tells
               you the right one for every purchase — so you stop leaving rewards behind without
@@ -189,7 +189,7 @@ export default function Home() {
             <div className="verdict-behind b1" />
             <div className="verdict-behind b2" />
             <div className="verdict-card">
-              <div className="verdict-mark"><SuitedMark size={30} color="#111A2E" face="#F5F1E8" /></div>
+              <div className="verdict-mark"><SuitedMark size={30} color="#111A2E" face="#FFFFFF" /></div>
               <div className="verdict-label">Use this</div>
               <div className="verdict-name">Sapphire</div>
             </div>
@@ -331,7 +331,7 @@ export default function Home() {
         <div className="container">
           <h2 className="headline">Stop leaving money behind.</h2>
           <p className="subhead">Join the waitlist and be first in when we open access.</p>
-          <WaitlistForm surface="plum" />
+          <WaitlistForm surface="light" />
           <p className="final-cta-micro">No spam. No credit card. Just the right card, every time.</p>
         </div>
       </section>

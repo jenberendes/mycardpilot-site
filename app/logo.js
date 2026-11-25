@@ -4,8 +4,9 @@
 export const ACCENT_PLUM = '#B98AC9'
 export const INK = '#111A2E'
 export const IVORY = '#F5F1E8'
+export const WHITE = '#FFFFFF'
 
-export function SuitedMark({ size = 24, color = 'currentColor', face = INK, accent = ACCENT_PLUM }) {
+export function SuitedMark({ size = 24, color = 'currentColor', face = WHITE, accent = ACCENT_PLUM }) {
   return (
     <svg width={size} height={size} viewBox="0 0 100 100" fill="none" aria-hidden="true">
       <rect x="26" y="14" width="60" height="42" rx="8" fill={accent} transform="rotate(10 56 35)" />
@@ -15,7 +16,7 @@ export function SuitedMark({ size = 24, color = 'currentColor', face = INK, acce
   )
 }
 
-export function SuitedLogo({ face = INK }) {
+export function SuitedLogo({ face = WHITE }) {
   return (
     <>
       <SuitedMark size={24} face={face} />
