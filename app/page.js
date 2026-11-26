@@ -271,7 +271,7 @@ export default function Home() {
       <section id="business" className="section on-black">
         <div className="container business-grid">
           <div>
-            <div className="eyebrow" style={{ color: 'var(--plum-hi)' }}>For business owners</div>
+            <div className="eyebrow">For business owners</div>
             <h2 className="headline" style={{ marginTop: 18 }}>Built for the way<br />businesses actually spend.</h2>
             <p className="subhead" style={{ marginTop: 20, color: 'var(--cream-dim)' }}>
               Cards across multiple entities and employees is a mess to track. GitSuited keeps it in one place.
