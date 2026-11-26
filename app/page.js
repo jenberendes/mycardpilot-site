@@ -365,7 +365,7 @@ export default function Home() {
             </div>
           </div>
           <div className="footer-bottom">
-            <p>© <CurrentYear /> Suited LLC · Omaha, Nebraska · Not affiliated with any card issuer.</p>
+            <p>© <CurrentYear /> GitSuited LLC · Omaha, Nebraska · Not affiliated with any card issuer.</p>
             <p>Always read card terms before applying.</p>
           </div>
         </div>
