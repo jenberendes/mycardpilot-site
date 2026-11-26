@@ -175,7 +175,7 @@ export default function Home() {
             <div className="eyebrow eyebrow-tag">Now in early access</div>
             <h1 className="headline headline--hero">Always know<br /><span className="headline-accent">which card to use.</span></h1>
             <p className="subhead">
-              You've got a few cards. Most of the time you just grab one and hope. Suited tells
+              You've got a few cards. Most of the time you just grab one and hope. GitSuited tells
               you the right one for every purchase — so you stop leaving rewards behind without
               thinking about it.
             </p>
@@ -218,18 +218,18 @@ export default function Home() {
             <div className="eyebrow">Features</div>
             <h2 className="headline">Everything you need,<br />none of the homework.</h2>
             <p className="subhead">
-              Suited does the optimizing a points obsessive would — so you never have to become one.
+              GitSuited does the optimizing a points obsessive would — so you never have to become one.
             </p>
           </div>
 
           <div className="features-grid">
             {[
-              { g: glyph.card, title: 'The right card, instantly', desc: 'Tell us the category and amount. Suited names the card that earns most, and explains why in plain English.' },
-              { g: glyph.statement, title: 'See what you actually earned', desc: 'Upload a statement (CSV or PDF). Suited sorts every purchase and shows what you earned and what you left behind.' },
+              { g: glyph.card, title: 'The right card, instantly', desc: 'Tell us the category and amount. GitSuited names the card that earns most, and explains why in plain English.' },
+              { g: glyph.statement, title: 'See what you actually earned', desc: 'Upload a statement (CSV or PDF). GitSuited sorts every purchase and shows what you earned and what you left behind.' },
               { g: glyph.compare, title: 'Compare cards honestly', desc: 'Put up to four cards side by side on rewards, perks, fees, and real net value — not just headline multipliers.' },
               { g: glyph.points, title: 'Points, without the spreadsheet', desc: 'Track points across programs and see the best way to use them, starting from where you actually want to go.' },
-              { g: glyph.status, title: 'Status, if you want it', desc: 'Set an airline or hotel goal and Suited routes the right spend toward it. Ignore it entirely if you don\'t care.' },
-              { g: glyph.window, title: 'Never miss a 0% window', desc: 'Suited tracks intro-APR end dates and warns you at 90, 60, and 30 days.' },
+              { g: glyph.status, title: 'Status, if you want it', desc: 'Set an airline or hotel goal and GitSuited routes the right spend toward it. Ignore it entirely if you don\'t care.' },
+              { g: glyph.window, title: 'Never miss a 0% window', desc: 'GitSuited tracks intro-APR end dates and warns you at 90, 60, and 30 days.' },
             ].map((f, i) => (
               <div className="feature" key={i}>
                 <div className="feature-glyph">{f.g}</div>
@@ -248,13 +248,13 @@ export default function Home() {
             <div className="eyebrow">How it works</div>
             <h2 className="headline">Set up in minutes.</h2>
             <p className="subhead">
-              No bank connection required to start. Add your cards and let Suited do the rest.
+              No bank connection required to start. Add your cards and let GitSuited do the rest.
             </p>
           </div>
           <div className="steps">
             {[
               { num: '01', title: 'Add your cards', desc: 'Pick what you own from our database. Add household members or a business in seconds.' },
-              { num: '02', title: 'Say what matters', desc: 'Cash back, travel, status, or just "the most value." Suited tailors every call to that.' },
+              { num: '02', title: 'Say what matters', desc: 'Cash back, travel, status, or just "the most value." GitSuited tailors every call to that.' },
               { num: '03', title: 'Check before you pay', desc: 'A quick look tells you the right card. Upload statements when you want to see earnings and trends.' },
             ].map((s, i) => (
               <div className="step" key={i}>
@@ -274,7 +274,7 @@ export default function Home() {
             <div className="eyebrow" style={{ color: 'var(--plum-hi)' }}>For business owners</div>
             <h2 className="headline" style={{ marginTop: 18 }}>Built for the way<br />businesses actually spend.</h2>
             <p className="subhead" style={{ marginTop: 20, color: 'var(--cream-dim)' }}>
-              Cards across multiple entities and employees is a mess to track. Suited keeps it in one place.
+              Cards across multiple entities and employees is a mess to track. GitSuited keeps it in one place.
             </p>
             <ul className="business-list">
               <li>Assign each card to an entity</li>
@@ -319,7 +319,7 @@ export default function Home() {
             </p>
             <p>
               Every "which card should I use" tool assumed I wanted to become a points expert. I
-              didn't. I just wanted the right answer. So I built Suited to give it to me — and to you.
+              didn't. I just wanted the right answer. So I built GitSuited to give it to me — and to you.
             </p>
             <p className="founder-sign">— Jen, founder</p>
           </div>

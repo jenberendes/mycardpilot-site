@@ -2,13 +2,13 @@ import './globals.css'
 
 export const metadata = {
   metadataBase: new URL('https://mycardpilot.com'),
-  title: 'Suited — Always know which card to use',
-  description: 'You\'ve got a few cards. Suited tells you the right one for every purchase — so you stop leaving rewards behind without thinking about it.',
+  title: 'GitSuited — Always know which card to use',
+  description: 'You\'ve got a few cards. GitSuited tells you the right one for every purchase — so you stop leaving rewards behind without thinking about it.',
   openGraph: {
-    title: 'Suited — Always know which card to use',
+    title: 'GitSuited — Always know which card to use',
     description: 'The smartest way to use the cards you already have.',
     url: 'https://mycardpilot.com',
-    siteName: 'Suited',
+    siteName: 'GitSuited',
     type: 'website',
   },
   twitter: { card: 'summary_large_image' },

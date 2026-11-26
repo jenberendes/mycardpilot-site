@@ -1,6 +1,6 @@
 /* Shared layout for the Privacy Policy and Terms pages. */
 import { SuitedLogo } from './logo'
-export const BRAND = 'Suited'
+export const BRAND = 'GitSuited'
 export const CONTACT_EMAIL = 'hello@mycardpilot.com'
 
 export default function LegalPage({ title, updated, children }) {

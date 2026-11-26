@@ -1,7 +1,7 @@
 // The picture shown when someone texts or posts a link to the site.
 import { ImageResponse } from 'next/og'
 
-export const alt = 'Suited: always know which card to use'
+export const alt = 'GitSuited: always know which card to use'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -26,7 +26,7 @@ export default function OpengraphImage() {
             <rect x="12" y="34" width="66" height="46" rx="9" fill="#FFFFFF" stroke="#111A2E" strokeWidth="7" />
             <line x1="24" y1="66" x2="48" y2="66" stroke="#111A2E" strokeWidth="5" strokeLinecap="round" />
           </svg>
-          <div style={{ fontSize: 44, fontWeight: 700, letterSpacing: '-0.02em' }}>suited</div>
+          <div style={{ fontSize: 44, fontWeight: 700, letterSpacing: '-0.02em', display: 'flex' }}><span style={{ color: '#7A4A93', fontWeight: 700 }}>git</span><span style={{ fontWeight: 700, marginLeft: -5 }}>suited</span></div>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
           <div style={{ fontSize: 72, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em', display: 'flex', flexWrap: 'wrap' }}>

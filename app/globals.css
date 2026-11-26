@@ -1,7 +1,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* ── Suited light theme (matches the app): soft mist, white cards, ink text, plum accents ── */
+  /* ── GitSuited light theme (matches the app): soft mist, white cards, ink text, plum accents ── */
   --mist: #F4F4F8;        /* page background */
   --white: #FFFFFF;       /* cards and surfaces */
   --ink: #111A2E;         /* text */

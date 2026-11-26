@@ -1,6 +1,6 @@
-/* Suited logo: a "card stack" mark (plum card behind, outlined card in front).
+/* GitSuited logo: a "card stack" mark (plum card behind, outlined card in front).
    Matches the app's SuitedLogo.tsx (variant "stack"). The wordmark is lowercase
-   "suited" by design; in sentences the brand is written "Suited". */
+   "gitsuited" by design ("git" in deep plum); in sentences the brand is written "GitSuited". */
 export const ACCENT_PLUM = '#B98AC9'
 export const INK = '#111A2E'
 export const IVORY = '#F5F1E8'
@@ -20,7 +20,7 @@ export function SuitedLogo({ face = WHITE }) {
   return (
     <>
       <SuitedMark size={24} face={face} />
-      <span aria-label="Suited">suited</span>
+      <span aria-label="GitSuited"><span style={{ color: '#7A4A93' }}>git</span>suited</span>
     </>
   )
 }

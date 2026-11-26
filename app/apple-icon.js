@@ -1,4 +1,4 @@
-// Home-screen icon for iPhones (same Suited card-stack mark as the browser tab icon, as a PNG).
+// Home-screen icon for iPhones (same GitSuited card-stack mark as the browser tab icon, as a PNG).
 import { ImageResponse } from 'next/og'
 
 export const size = { width: 180, height: 180 }
