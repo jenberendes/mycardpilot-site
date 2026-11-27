@@ -254,7 +254,7 @@ nav {
   box-shadow: var(--shadow-md);
 }
 .verdict-behind.b1 { background: linear-gradient(135deg, #5AD8A2, #22B077); transform: translate(-44px, -30px) rotate(-7deg); }
-.verdict-behind.b2 { background: linear-gradient(135deg, #2A3552, #111A2E); transform: translate(34px, 34px) rotate(6deg); }
+.verdict-behind.b2 { background: linear-gradient(135deg, #22A877, #178A5F); transform: translate(34px, 34px) rotate(6deg); }
 .verdict-card {
   position: relative;
   width: 320px;
